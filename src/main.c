@@ -1,101 +1,114 @@
 /*
-	1. CÓïÑÔ»ù´¡Óï·¨Óë±à³ÌÂß¼­
-	2. CÓïÑÔ½á¹¹Ìå
-	3. Êı¾İ½á¹¹»ù´¡£ºÁ´±í
-	4. CÓïÑÔÎÄ¼ş²Ù×÷
+	1. Cè¯­è¨€åŸºç¡€è¯­æ³•ä¸ç¼–ç¨‹é€»è¾‘
+	2. Cè¯­è¨€ç»“æ„ä½“
+	3. æ•°æ®ç»“æ„åŸºç¡€ï¼šé“¾è¡¨
+	4. Cè¯­è¨€æ–‡ä»¶æ“ä½œ
 ----------------------------------------------------------------
-	¹Ì¶¨Á÷³Ì
-	0.µÇÂ¼½çÃæ£ºµÇÂ½ÑéÖ¤
-	1.²Ëµ¥Éè¼Æ
-	2.°´¼ü½»»¥
-	3.Éè¼ÆÊı¾İ
-	4.Ñ¡Ôñ´æ´¢Êı¾İµÄ·½Ê½/½á¹¹£º
-	Êı×é½á¹¹
-	Êı×é£º½á¹¹ÌåÊı×é
-	Á´Ê½½á¹¹
+	å›ºå®šæµç¨‹
+	0.ç™»å½•ç•Œé¢ï¼šç™»é™†éªŒè¯
+	1.èœå•è®¾è®¡
+	2.æŒ‰é”®äº¤äº’
+	3.è®¾è®¡æ•°æ®
+	4.é€‰æ‹©å­˜å‚¨æ•°æ®çš„æ–¹å¼/ç»“æ„ï¼š
+	æ•°ç»„ç»“æ„
+	æ•°ç»„ï¼šç»“æ„ä½“æ•°ç»„
+	é“¾å¼ç»“æ„
  */
-#include"../include/singleList.h"
+#include "../include/singleList.h"
+
 void systemMenu(void)
 {
-	//¼¸¸ö²Ëµ¥Í¨³£Çé¿öÏÂ¾ÍÊÇ¼¸¸öº¯Êı
-	//²Ëµ¥--¹¦ÄÜ
-	//Òş²Ø¹¦ÄÜ£ºÍ¬²½ÎÄ¼ş
-	printf("----------------------[Ñ§Éú¹ÜÀíÏµÍ³]-----------------------\n");
-	printf("\t\t\t0.[ÍË³öÏµÍ³]\n");
-	printf("\t\t\t1.[²åÈëĞÅÏ¢]\n");
-	printf("\t\t\t2.[ä¯ÀÀĞÅÏ¢]\n");
-	printf("\t\t\t3.[É¾³ıĞÅÏ¢]\n");
-	printf("\t\t\t4.[ĞŞ¸ÄĞÅÏ¢]\n");
-	printf("\t\t\t5.[²éÕÒĞÅÏ¢]\n");
-	// printf("\t\t6.±£´æµ½ÎÄ¼ş"); Ä¬ÈÏËùÓĞ²Ù×÷¶¼ÊÇ±£´æµ½ÎÄ¼şÖĞ
+	//å‡ ä¸ªèœå•é€šå¸¸æƒ…å†µä¸‹å°±æ˜¯å‡ ä¸ªå‡½æ•°
+	//èœå•--åŠŸèƒ½
+	//éšè—åŠŸèƒ½ï¼šåŒæ­¥æ–‡ä»¶
+	printf("----------------------[å­¦ç”Ÿç®¡ç†ç³»ç»Ÿ]-----------------------\n");
+	printf("\t\t\t0.[é€€å‡ºç³»ç»Ÿ]\n");
+	printf("\t\t\t1.[æ’å…¥ä¿¡æ¯]\n");
+	printf("\t\t\t2.[æµè§ˆä¿¡æ¯]\n");
+	printf("\t\t\t3.[åˆ é™¤ä¿¡æ¯]\n");
+	printf("\t\t\t4.[ä¿®æ”¹ä¿¡æ¯]\n");
+	printf("\t\t\t5.[æŸ¥æ‰¾ä¿¡æ¯]\n");
+	// printf("\t\t6.ä¿å­˜åˆ°æ–‡ä»¶"); é»˜è®¤æ‰€æœ‰æ“ä½œéƒ½æ˜¯ä¿å­˜åˆ°æ–‡ä»¶ä¸­
 	printf("-----------------------------------------------------------\n");
-	printf("ÇëÊäÈëÏà¹Ø¹¦ÄÜĞòºÅ(0-5):");
-	/* ĞèÒª¸ø³ö½»»¥µÄÌáÊ¾ */
+	printf("è¯·è¾“å…¥ç›¸å…³åŠŸèƒ½åºå·(0-5):");
+	/* éœ€è¦ç»™å‡ºäº¤äº’çš„æç¤º */
 }
-void keyDown()
-/* ÓÃ»§ÊäÈë½»»¥ */
+void keyDown(struct Node *list)
+/* ç”¨æˆ·è¾“å…¥äº¤äº’ */
 {
 	int userKey;
+	struct student tempData;
 	scanf("%d", &userKey);
 	switch (userKey)
 	{
-		case 0:
-			printf("\t\t\t0.[ÍË³öÏµÍ³]\n");
-			break;
-		case 1:
-			printf("\t\t\t1.[²åÈëĞÅÏ¢]\n");
-			break;
-		case 2:
-			printf("\t\t\t2.[ä¯ÀÀĞÅÏ¢]\n");
-			break;
-		case 3:
-			printf("\t\t\t3.[É¾³ıĞÅÏ¢]\n");
-			break;
-		case 4:
-			printf("\t\t\t4.[ĞŞ¸ÄĞÅÏ¢]\n");
-			break;
-		case 5:
-			printf("\t\t\t5.[²éÕÒĞÅÏ¢]\n");
-			break;
-		default:
-			printf("\t\t\t[ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë£¡]\n");
-			break;
+	case 0:
+		printf("\t\t\t0.[é€€å‡ºç³»ç»Ÿ]\n");
+		system("pause");
+		exit(0);
+		break;
+	case 1:
+		printf("\t\t\t1.[æ’å…¥ä¿¡æ¯]\n");
+		printf("è¯·è¾“å…¥å§“åï¼Œå­¦å·ï¼Œå¹´é¾„ï¼Œç”µè¯ï¼Œä½å€ï¼š");
+		scanf("%s%s%d%s%s", tempData.name, tempData.number, &tempData.age, tempData.tel, tempData.addr);
+		insertNodeByHead(list, tempData);
+		break;
+	case 2:
+		printf("\t\t\t2.[æµè§ˆä¿¡æ¯]\n");
+		printList(list);
+		break;
+	case 3:
+		printf("\t\t\t3.[åˆ é™¤ä¿¡æ¯]\n");
+		printf("è¯·è¾“å…¥è¦åˆ é™¤çš„å­¦ç”Ÿå§“åï¼š");
+		scanf("%s", tempData.name);
+		deleteNodeByAppoinName(list, tempData.name);
+		break;
+	case 4:
+		printf("\t\t\t4.[ä¿®æ”¹ä¿¡æ¯]\n");
+		printf("è¯·è¾“å…¥éœ€è¦ä¿®æ”¹çš„å­¦ç”Ÿçš„å­¦å·ï¼š");
+		scanf("%s", tempData.number);
+		struct Node *currenNode = searchNodeByAppoinNum(list, tempData.number);//æŸ¥æ‰¾ä¿¡æ¯å¹¶è®°å½•èŠ‚ç‚¹æŒ‡é’ˆ
+		if (currenNode == NULL)
+		{
+			printf("æœªæ‰¾åˆ°ç›¸å…³ä¿¡æ¯ï¼");
 		}
+		else
+		{
+			printf("è¯·è¾“å…¥æ–°çš„å­¦ç”Ÿä¿¡æ¯:\n");
+			printf("è¯·è¾“å…¥å§“åï¼Œå­¦å·ï¼Œå¹´é¾„ï¼Œç”µè¯ï¼Œä½å€ï¼š");
+			scanf("%s%s%d%s%s", currenNode->data.name, currenNode->data.number, &currenNode->data.age, currenNode->data.tel, currenNode->data.addr);
+		}
+		break;
+	case 5:
+		printf("\t\t\t5.[æŸ¥æ‰¾ä¿¡æ¯]\n");
+		printf("è¯·è¾“å…¥æŸ¥æ‰¾çš„å­¦å·ï¼š");
+		scanf("%s", tempData.number);
+		if (searchNodeByAppoinNum(list, tempData.number) == NULL)
+		{
+			printf("æœªæ‰¾åˆ°ç›¸å…³ä¿¡æ¯ï¼");
+		}
+		else
+		{
+			printNode(searchNodeByAppoinNum(list, tempData.number));
+		}
+		break;
+	default:
+		printf("\t\t\t[è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼]\n");
+		break;
+	}
 }
 int main(int argc, char const *argv[])
 {
-	struct Node node1 = {1, NULL};
-	struct Node node2 = {2, NULL};
-	struct Node node3 = {3, NULL};
-	
+
+	struct Node *list = createList();
+
 	while (1)
 	{
 		systemMenu();
-		keyDown();
+		keyDown(list);
 		system("pause");
 		system("cls");
-		/* Á¼ºÃµÄÓÃ»§½»»¥ */
+		/* è‰¯å¥½çš„ç”¨æˆ·äº¤äº’ */
 	}
 
 	return 0;
-}
-
-char *s_gets(char *st, int n)
-{
-	char *ret_val = NULL;
-	int i = 0;
-	ret_val = fgets(st, n, stdin);
-	if (ret_val != NULL)
-	{
-		while (st[i] != '\n' && st[i] != '\0')
-			i++;
-		if (st[i] == '\n')
-			st[i] = '\0';
-		else
-		{
-			while (getchar() != '\n')
-				continue;
-		}
-	}
-	return ret_val;
 }
