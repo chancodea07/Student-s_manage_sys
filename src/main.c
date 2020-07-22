@@ -14,29 +14,65 @@
 	数组：结构体数组
 	链式结构
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include"../include/singleList.h"
 void systemMenu(void)
 {
 	//几个菜单通常情况下就是几个函数
 	//菜单--功能
 	//隐藏功能：同步文件
 	printf("----------------------[学生管理系统]-----------------------\n");
-	printf("\t\t\t0.退出系统\n");
-	printf("\t\t\t1.插入信息\n");
-	printf("\t\t\t2.浏览信息\n");
-	printf("\t\t\t3.删除信息\n");
-	printf("\t\t\t4.修改信息\n");
-	printf("\t\t\t5.查找信息\n");
+	printf("\t\t\t0.[退出系统]\n");
+	printf("\t\t\t1.[插入信息]\n");
+	printf("\t\t\t2.[浏览信息]\n");
+	printf("\t\t\t3.[删除信息]\n");
+	printf("\t\t\t4.[修改信息]\n");
+	printf("\t\t\t5.[查找信息]\n");
 	// printf("\t\t6.保存到文件"); 默认所有操作都是保存到文件中
 	printf("-----------------------------------------------------------\n");
 	printf("请输入相关功能序号(0-5):");
 	/* 需要给出交互的提示 */
 }
+void keyDown()
+/* 用户输入交互 */
+{
+	int userKey;
+	scanf("%d", &userKey);
+	switch (userKey)
+	{
+		case 0:
+			printf("\t\t\t0.[退出系统]\n");
+			break;
+		case 1:
+			printf("\t\t\t1.[插入信息]\n");
+			break;
+		case 2:
+			printf("\t\t\t2.[浏览信息]\n");
+			break;
+		case 3:
+			printf("\t\t\t3.[删除信息]\n");
+			break;
+		case 4:
+			printf("\t\t\t4.[修改信息]\n");
+			break;
+		case 5:
+			printf("\t\t\t5.[查找信息]\n");
+			break;
+		default:
+			printf("\t\t\t[输入错误，请重新输入！]\n");
+			break;
+		}
+}
 int main(int argc, char const *argv[])
 {
-	systemMenu();
+	while (1)
+	{
+		systemMenu();
+		keyDown();
+		system("pause");
+		system("cls");
+		/* 良好的用户交互 */
+	}
+
 	return 0;
 }
 
