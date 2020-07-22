@@ -64,6 +64,10 @@ void keyDown()
 }
 int main(int argc, char const *argv[])
 {
+	struct Node node1 = {1, NULL};
+	struct Node node2 = {2, NULL};
+	struct Node node3 = {3, NULL};
+	
 	while (1)
 	{
 		systemMenu();
