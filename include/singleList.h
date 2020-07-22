@@ -117,3 +117,32 @@ void printNode(struct Node *currenNode)
     printf("姓名\t编号\t年龄\t电话\t\t住址\n");
     printf("%s\t%s\t%d\t%s\t\t%s\t\n", currenNode->data.name, currenNode->data.number, currenNode->data.age, currenNode->data.tel, currenNode->data.addr);
 }
+//文件操作，从文件中读入学生数据
+void readInfoFromFile(char *fileName, struct Node *listHeadNode)
+{
+    FILE *fp = fopen(fileName, "r");
+    if (fp == NULL) //防止文件不存在
+    {
+        fp = fopen(fileName, "w");
+    }
+    //格式化读取
+    struct student tempData;
+    while (fscanf(fp, "%s\t%s\t%d\t%s\t%s", tempData.name, tempData.number, &tempData.age, tempData.tel, tempData.addr) != EOF)
+    {
+        insertNodeByHead(listHeadNode, tempData);
+        memset(&tempData, 0, sizeof(tempData));
+    }
+    fclose(fp);
+}
+//文件操作，将学生数据保存到文件中
+void saveInfoToFile(char *fileName, struct Node *listHeadNode)
+{
+    FILE *fp = fopen(fileName, "w+");
+    struct Node *pMove = listHeadNode->next;
+    while (pMove != NULL)
+    {
+        fprintf(fp,"%s\t%s\t%d\t%s\t\t%s\t\n", pMove->data.name, pMove->data.number, pMove->data.age, pMove->data.tel, pMove->data.addr);
+        pMove = pMove->next;
+    }
+    fclose(fp);
+}

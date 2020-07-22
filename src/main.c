@@ -51,6 +51,7 @@ void keyDown(struct Node *list)
 		printf("请输入姓名，学号，年龄，电话，住址：");
 		scanf("%s%s%d%s%s", tempData.name, tempData.number, &tempData.age, tempData.tel, tempData.addr);
 		insertNodeByHead(list, tempData);
+		saveInfoToFile("student.txt", list);
 		break;
 	case 2:
 		printf("\t\t\t2.[浏览信息]\n");
@@ -61,6 +62,7 @@ void keyDown(struct Node *list)
 		printf("请输入要删除的学生姓名：");
 		scanf("%s", tempData.name);
 		deleteNodeByAppoinName(list, tempData.name);
+		saveInfoToFile("student.txt", list);
 		break;
 	case 4:
 		printf("\t\t\t4.[修改信息]\n");
@@ -76,6 +78,7 @@ void keyDown(struct Node *list)
 			printf("请输入新的学生信息:\n");
 			printf("请输入姓名，学号，年龄，电话，住址：");
 			scanf("%s%s%d%s%s", currenNode->data.name, currenNode->data.number, &currenNode->data.age, currenNode->data.tel, currenNode->data.addr);
+			saveInfoToFile("student.txt", list);
 		}
 		break;
 	case 5:
@@ -100,7 +103,7 @@ int main(int argc, char const *argv[])
 {
 
 	struct Node *list = createList();
-
+	readInfoFromFile("student.txt",list);
 	while (1)
 	{
 		systemMenu();
