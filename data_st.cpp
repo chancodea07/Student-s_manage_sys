@@ -1,61 +1,34 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-//å†™æ•°æ®ç»“æž„
-//æ­»æ–¹æ³•
-//1.æŠ½è±¡å•ä¸€ä¸ªä½“ åˆ‡åˆ†
-//2.æè¿°æœ€åˆçŠ¶æ€ï¼šåˆå§‹åŒ–å˜é‡
-//3.æ’å…¥ã€ä¿®æ”¹ã€åˆ é™¤
-//4.æ‰“å°éåŽ†ï¼ˆæŸ¥æ‰¾ï¼‰
-struct student
-{
-    char name[20];
-    char number[15];
-    int age;
-    char tel[20];
-    char addr[20];
-};
-struct Node
-{
-    struct student data;
-    struct Node *next;
-};
-/*
-    - æ˜Žç¡®é“¾è¡¨çš„å«ä¹‰ï¼šç»“æž„ä½“å˜é‡å’Œç»“æž„ä½“å˜é‡è¿žæŽ¥åœ¨ä¸€èµ·
-    - æŒ‡é’ˆå˜æˆå˜é‡çš„å¸¸ç”¨æ–¹å¼ï¼šåŠ¨æ€å†…å­˜ç”³è¯·
-    - ç”¨ç¬¬ä¸€ä¸ªèŠ‚ç‚¹ï¼ˆå¤´èŠ‚ç‚¹ï¼‰è¡¨ç¤ºæ•´ä¸ªé“¾è¡¨
- */
+#include "data_st.h"
 struct Node *createList()
 {
-    //æœ‰è¡¨å¤´çš„é“¾è¡¨ï¼šå¤´èŠ‚ç‚¹ä¸å­˜å‚¨æ•°æ®
-    //æ— æ ‡å¤´çš„é“¾è¡¨ï¼šå¤´èŠ‚ç‚¹å­˜å‚¨æ•°æ®
-    //äº§ç”Ÿä¸€ä¸ªç»“æž„ä½“å˜é‡ -> åˆå§‹åŒ–ä¸€ä¸ªå˜é‡
+    //ÓÐ±íÍ·µÄÁ´±í£ºÍ·½Úµã²»´æ´¢Êý¾Ý
+    //ÎÞ±êÍ·µÄÁ´±í£ºÍ·½Úµã´æ´¢Êý¾Ý
+    //²úÉúÒ»¸ö½á¹¹Ìå±äÁ¿ -> ³õÊ¼»¯Ò»¸ö±äÁ¿
     struct Node *listHeadNode = (struct Node *)malloc(sizeof(struct Node));
     listHeadNode->next = NULL;
     return listHeadNode;
 }
-//åˆ›å»ºä¸€ä¸ªæ–°çš„èŠ‚ç‚¹
+//´´½¨Ò»¸öÐÂµÄ½Úµã
 struct Node *createNode(struct student data)
 {
-    //äº§ç”Ÿä¸€ä¸ªç»“æž„ä½“å˜é‡ -> åˆå§‹åŒ–ä¸€ä¸ªå˜é‡
+    //²úÉúÒ»¸ö½á¹¹Ìå±äÁ¿ -> ³õÊ¼»¯Ò»¸ö±äÁ¿
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
 }
-//æ’å…¥èŠ‚ç‚¹å¹¶æŒ‡å®šæ’å…¥ä½ç½®å’Œå€¼
+//²åÈë½Úµã²¢Ö¸¶¨²åÈëÎ»ÖÃºÍÖµ
 void insertNodeByHead(struct Node *listHeadNode, struct student data)
 {
     struct Node *newNode = createNode(data);
     newNode->next = listHeadNode->next;
     listHeadNode->next = newNode;
 }
-//æ‰“å°é“¾è¡¨
+//´òÓ¡Á´±í
 void printList(struct Node *listHeadNode)
 {
     struct Node *pMove = listHeadNode->next;
-    printf("å§“å\tç¼–å·\tå¹´é¾„\tç”µè¯\t\tä½å€\n");
+    printf("ÐÕÃû\t±àºÅ\tÄêÁä\tµç»°\t\t×¡Ö·\n");
 
     while (pMove != NULL)
     {
@@ -64,14 +37,14 @@ void printList(struct Node *listHeadNode)
     }
     printf("\n");
 }
-//åˆ é™¤æŒ‡å®šä½ç½®çš„é“¾è¡¨èŠ‚ç‚¹ï¼Œæ³¨æ„ç”»å›¾ç†è§£ï¼
+//É¾³ýÖ¸¶¨Î»ÖÃµÄÁ´±í½Úµã£¬×¢Òâ»­Í¼Àí½â£¡
 void deleteNodeByAppoinName(struct Node *listHeadNode, char *name)
 {
     struct Node *posFrontNode = listHeadNode;
     struct Node *posNode = listHeadNode->next;
     if (posNode == NULL)
     {
-        printf("æ— ç›¸å…³å†…å®¹ï¼Œæ— æ³•åˆ é™¤\n");
+        printf("ÎÞÏà¹ØÄÚÈÝ£¬ÎÞ·¨É¾³ý\n");
         return;
     }
     else
@@ -82,7 +55,7 @@ void deleteNodeByAppoinName(struct Node *listHeadNode, char *name)
             posNode = posNode->next;
             if (posNode == NULL)
             {
-                printf("æ— ç›¸å…³å†…å®¹ï¼Œæ— æ³•åˆ é™¤\n");
+                printf("ÎÞÏà¹ØÄÚÈÝ£¬ÎÞ·¨É¾³ý\n");
                 return;
             }
         }
@@ -90,7 +63,7 @@ void deleteNodeByAppoinName(struct Node *listHeadNode, char *name)
         free(posNode);
     }
 }
-//æŸ¥æ‰¾èŠ‚ç‚¹
+//²éÕÒ½Úµã
 struct Node *searchNodeByAppoinNum(struct Node *listHeadNode, char *num)
 {
     struct Node *pMove = listHeadNode->next;
@@ -110,22 +83,23 @@ struct Node *searchNodeByAppoinNum(struct Node *listHeadNode, char *num)
             return pMove;
         }
     }
+    return pMove;
 }
-//æ‰“å°å½“å‰èŠ‚ç‚¹æ•°æ®
+//´òÓ¡µ±Ç°½ÚµãÊý¾Ý
 void printNode(struct Node *currenNode)
 {
-    printf("å§“å\tç¼–å·\tå¹´é¾„\tç”µè¯\t\tä½å€\n");
+    printf("ÐÕÃû\t±àºÅ\tÄêÁä\tµç»°\t\t×¡Ö·\n");
     printf("%s\t%s\t%d\t%s\t\t%s\t\n", currenNode->data.name, currenNode->data.number, currenNode->data.age, currenNode->data.tel, currenNode->data.addr);
 }
-//æ–‡ä»¶æ“ä½œï¼Œä»Žæ–‡ä»¶ä¸­è¯»å…¥å­¦ç”Ÿæ•°æ®
+//ÎÄ¼þ²Ù×÷£¬´ÓÎÄ¼þÖÐ¶ÁÈëÑ§ÉúÊý¾Ý
 void readInfoFromFile(char *fileName, struct Node *listHeadNode)
 {
     FILE *fp = fopen(fileName, "r");
-    if (fp == NULL) //é˜²æ­¢æ–‡ä»¶ä¸å­˜åœ¨
+    if (fp == NULL) //·ÀÖ¹ÎÄ¼þ²»´æÔÚ
     {
         fp = fopen(fileName, "w");
     }
-    //æ ¼å¼åŒ–è¯»å–
+    //¸ñÊ½»¯¶ÁÈ¡
     struct student tempData;
     while (fscanf(fp, "%s\t%s\t%d\t%s\t%s", tempData.name, tempData.number, &tempData.age, tempData.tel, tempData.addr) != EOF)
     {
@@ -134,14 +108,14 @@ void readInfoFromFile(char *fileName, struct Node *listHeadNode)
     }
     fclose(fp);
 }
-//æ–‡ä»¶æ“ä½œï¼Œå°†å­¦ç”Ÿæ•°æ®ä¿å­˜åˆ°æ–‡ä»¶ä¸­
+//ÎÄ¼þ²Ù×÷£¬½«Ñ§ÉúÊý¾Ý±£´æµ½ÎÄ¼þÖÐ
 void saveInfoToFile(char *fileName, struct Node *listHeadNode)
 {
     FILE *fp = fopen(fileName, "w+");
     struct Node *pMove = listHeadNode->next;
     while (pMove != NULL)
     {
-        fprintf(fp,"%s\t%s\t%d\t%s\t\t%s\t\n", pMove->data.name, pMove->data.number, pMove->data.age, pMove->data.tel, pMove->data.addr);
+        fprintf(fp, "%s\t%s\t%d\t%s\t\t%s\t\n", pMove->data.name, pMove->data.number, pMove->data.age, pMove->data.tel, pMove->data.addr);
         pMove = pMove->next;
     }
     fclose(fp);
